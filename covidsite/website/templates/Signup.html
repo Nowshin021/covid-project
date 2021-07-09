@@ -104,8 +104,13 @@
                                 {{ form.password2 }}
                             </div>
                         </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                {{form.is_ngo.as_hidden}}
+                            </div>
+                        </div>
                     </div>
-
+                    
 
                     <div class="text-center">
                         <input class="btn btn-main btn-round-full" name="submit" type="submit" value="Signup"></input>

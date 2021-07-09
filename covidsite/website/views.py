@@ -27,12 +27,23 @@ def RequestTestView(request):
 
 def SignupView(request):
     if request.method =='POST':
-        form = SignupForm(request.POST)
+        print("Post called")
+        form = NgoSignupForm(request.POST)
         if form.is_valid():
+            
             form.save()
-        return redirect('LoginView')
+            email = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=raw_password)
+            NgoProfileModel.objects.create(user=user)
+            return redirect('LoginView')
+        else :
+            print("Not created")
+            return render(request, 'Signup.html', {"form": form})
+            
+        
     else :
-        form = SignupForm()
+        form = NgoSignupForm()
 
     context = {
         'form' : form
@@ -50,7 +61,7 @@ def LoginView(request):
             password = request.POST['password']
             user = authenticate(email=email, password=password)
 
-            if user is not None:
+            if user and user.is_ngo:
                 login(request, user)
                 #messages.success(request, 'Loged in successfully.')
                 return redirect('HomeView')
