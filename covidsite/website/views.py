@@ -1,22 +1,45 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from .forms import *
 from website.models import *
+from django.views.generic import ListView
+
 # Create your views here.
+
 def HomeView(request):
     return render(request, 'home.html', {})
 
 
-def NGOListView(request):
-    return render(request, 'NGO.html', {})
+
+				
+                
+		
+
+class NGOListView(ListView):
+    model = NgoProfileModel    
+    template_name = 'NGO.html'
+    context_object_name = 'NGO_list'
+    #return render(request, , {})				
+					
 
 
 
-def NGOProfileView(request):
-    return render(request, 'NGOProfile.html', {})
+def NGODetailView(request, pk):   
+    context = {} 
+    NGO = get_object_or_404(User, pk=pk)
+    context['NGO'] = NGO
+    return render(request, 'NGOProfile.html', context)
+
+
+     
+   
+
+#def NGOProfileView(request):
+   # return render(request, 'NGOProfile.html', {})
 
 
 
