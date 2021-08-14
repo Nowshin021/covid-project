@@ -12,8 +12,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block text-center">
-          <span class="text-white">NGO Details</span>
-          <h1 class="text-capitalize mb-5 text-lg">{{ NGO.name }}</h1>
+          <span class="text-white">Profile</span>
+          <h1 class="text-capitalize mb-5 text-lg">{{ request.user.name }}</h1>
 
           <!-- <ul class="list-inline breadcumb-nav">
             <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
@@ -35,7 +35,7 @@
 					<img src="{% static 'website/images/team/5.jpg' %}" alt="" class="img-fluid w-100">
 
 					<div class="info-block mt-4">
-						<h4 class="mb-0">{{ NGO.name }}</h4>
+						<h4 class="mb-0">{{ request.user.name }}</h4>
 						<p>Dhaka</p>
 
 						<ul class="list-inline mt-4 doctor-social-links">
@@ -51,15 +51,14 @@
 
 			<div class="col-lg-8 col-md-6">
 				<div class="doctor-details mt-4 mt-lg-0">
-					<h2 class="text-md">Introducing to the NGO</h2>
+					<h2 class="text-md">NGO Information</h2>
 					<div class="divider my-4"></div>
-					<p>Introduction - {{ NGO.ngoprofilemodel.bio }}</p>
-					<p>Address - {{ NGO.ngoprofilemodel.address }}</p>
-					<p>Phone - {{ NGO.ngoprofilemodel.phone }}</p>
-					<p>Hospital - {{ NGO.ngoprofilemodel.hospital }}</p>
-					<p>Email Address - {{ NGO.email }}</p>
+					<p>{{ NGO.bio }}</p>
+					<p>{{ NGO.address }}</p>
+					<p>{{ NGO.hospital }}</p>
+					<p>{{ NGO.phone }}</p>
 
-					<a href="{% url 'RequestTestView'  %}" class="btn btn-main-2 btn-round-full mt-3">Make an Request</a>
+					
 				</div>
 			</div>
 		</div>

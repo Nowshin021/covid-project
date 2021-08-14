@@ -7,6 +7,7 @@ from django.contrib.auth import login, logout
 from .forms import *
 from website.models import *
 from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -31,15 +32,20 @@ class NGOListView(ListView):
 def NGODetailView(request, pk):   
     context = {} 
     NGO = get_object_or_404(User, pk=pk)
+    #NGO = request.user.ngoprofilemodel
     context['NGO'] = NGO
+    #context['user'] = user
     return render(request, 'NGOProfile.html', context)
 
 
      
    
-
-#def NGOProfileView(request):
-   # return render(request, 'NGOProfile.html', {})
+@login_required(login_url='LoginView')
+def NGOProfileView(request):
+    context = {}
+    NGO = request.user.ngoprofilemodel
+    context['NGO'] = NGO
+    return render(request, 'Profile.html', context)
 
 
 
@@ -87,7 +93,7 @@ def LoginView(request):
             if user and user.is_ngo:
                 login(request, user)
                 #messages.success(request, 'Loged in successfully.')
-                return redirect('HomeView')
+                return redirect('NGOProfileView')
                 
             else:
                 return redirect('LoginView')
@@ -111,3 +117,31 @@ def LogoutView(request):
     logout(request)
     return redirect('LoginView')
     #return render(request, 'home.html', {})
+
+
+def EditProfileView(request):
+    applicant = request.user.ngoprofilemodel
+    form = EditProfile(instance=applicant)
+    if request.method == 'POST':
+        form = EditProfile(request.POST, request.FILES, instance=applicant)
+        if form.is_valid():
+            form.save()
+            return redirect('NGOProfileView')
+        else:
+            return redirect('edit_profile.html')   
+    context = {
+      
+        'form': form,
+    }
+    return render(request, 'edit_profile.html', context)
+
+def DeleteProfileView(request):    
+    if request.method == 'POST':
+        form = DeleteUser(request.POST, instance=request.user)
+        if form.is_valid():
+            form.instance.delete()
+            return redirect('HomeView')
+    form = DeleteUser(instance=request.user)
+    args = {}
+    args['form'] = form
+    return render(request, 'delete_profile.html', args) 
