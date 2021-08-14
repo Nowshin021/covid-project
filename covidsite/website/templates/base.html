@@ -48,8 +48,11 @@
 			</div>
 		</div>
 	</div>
+	
+
 	<nav class="navbar navbar-expand-lg navigation" id="navbar">
 		<div class="container">
+		
 		 	 <a class="navbar-brand" href="{% url 'HomeView'   %}">
 			    <Strong>Covid Test Service</Strong> 
 			  </a>
@@ -60,22 +63,39 @@
 	  
 		  <div class="collapse navbar-collapse" id="navbarmain">
 			<ul class="navbar-nav ml-auto">
+			  {% if request.user.is_authenticated %}
+			  <li class="nav-item active">
+				<a class="nav-link" href="{% url 'NGOProfileView'   %}">Home</a>
+			  </li> 
+			  {% else %}
 			  <li class="nav-item active">
 				<a class="nav-link" href="{% url 'HomeView'   %}">Home</a>
 			  </li>
+			  {% endif %}
 			   <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
 			    <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
 
-			    <li class="nav-item dropdown">
+			    {% if request.user.is_authenticated %}
+			      <li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request.user.name }}<i class="icofont-thin-down"></i></a>
+					  <ul class="dropdown-menu" aria-labelledby="dropdown02">
+						
+						<li><a class="dropdown-item" href="{% url 'EditProfileView'   %}">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'DeleteProfileView'   %}">Delete Profile</a></li>						
+						<li><a class="dropdown-item" href="{% url 'LogoutView'   %}">Log out</a></li>
+					 </ul>
+			  	  </li>
+				  {% else %}
+				  <li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User <i class="icofont-thin-down"></i></a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown02">
 						
-						<li><a class="dropdown-item" href="{% url 'SignupView'   %}">NGO Sign up</a></li>
-						
-						<li><a class="dropdown-item" href="{% url 'LoginView'   %}">NGO Log in</a></li>
+						<li><a class="dropdown-item" href="{% url 'SignupView'   %}">NGO Sign Up</a></li>
+                        <li><a class="dropdown-item" href="{% url 'LoginView'   %}">NGO Log in </a></li>						
 						<li><a class="dropdown-item" href="{% url 'LogoutView'   %}">NGO Log out</a></li>
 					</ul>
-			  	</li>
+			   	  </li>
+				{% endif %}
 
 			  	<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">NGO <i class="icofont-thin-down"></i></a>
@@ -89,8 +109,9 @@
 			   <li class="nav-item"><a class="nav-link" href="{% url 'ContactView'  %}">Contact</a></li>
 			</ul>
 		  </div>
-		</div>
+		</div>		
 	</nav>
+	
 </header>
 	
 {% block content %}

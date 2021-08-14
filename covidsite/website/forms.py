@@ -35,3 +35,19 @@ class LoginForm(forms.Form):
 
         self.fields['email'].widget.attrs['class'] = 'form-control'
         self.fields['password'].widget.attrs['class'] = 'form-control'
+
+
+class DeleteUser(forms.ModelForm):
+    class Meta:
+       model = User
+       fields = ['email', 'name']
+
+
+
+
+class EditProfile(forms.ModelForm):
+    class Meta:
+        model = NgoProfileModel
+        fields = '__all__'
+        exclude = ['user']
+
