@@ -64,9 +64,19 @@ class User(AbstractBaseUser):
         return True
 
 
+class DivisionModel(models.Model):
+    division = models.CharField(max_length=100, null='True', blank='True')
+
+    def __str__(self):
+        return f'{self.division}'
+
+
 class NgoProfileModel(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     bio = models.TextField(null=True, blank=True)
     address = models.TextField(max_length=255, null=True, blank=True)
     phone = models.CharField(max_length=255, null=True, blank=True)
     hospital =models.CharField(max_length=255, null=True, blank=True)
+    ngo_division = models.ForeignKey(DivisionModel, on_delete=models.CASCADE, null='True', blank='True')
+
+

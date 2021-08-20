@@ -53,10 +53,11 @@
 				<div class="doctor-details mt-4 mt-lg-0">
 					<h2 class="text-md">NGO Information</h2>
 					<div class="divider my-4"></div>
-					<p>{{ NGO.bio }}</p>
-					<p>{{ NGO.address }}</p>
-					<p>{{ NGO.hospital }}</p>
-					<p>{{ NGO.phone }}</p>
+					<p>Bio : {{ NGO.bio }}</p>
+					<p>Address : {{ NGO.address }}</p>
+					<p>Hospital : {{ NGO.hospital }}</p>
+					<p>Phone : {{ NGO.phone }}</p>
+					<p>Email : {{ request.user.email }}</p>
 
 					
 				</div>

@@ -16,20 +16,52 @@ def HomeView(request):
 
 
 
-				
-                
-		
 
-class NGOListView(ListView):
-    model = NgoProfileModel    
-    template_name = 'NGO.html'
-    context_object_name = 'NGO_list'
-    #return render(request, , {})				
+
+#class NGOListView(ListView):
+   # model = NgoProfileModel    
+    #template_name = 'NGO.html'
+    #context_object_name = 'NGO_list'
+    #return render(request, , {})	
+
+
+#class DivisionListView(ListView):
+ #   model = DivisionModel
+  #  template_name = 	'NGO.html'			
+   # context_object_name = 'Division_list'           
 					
+def NGOlistView(request):
+    context = {}
+    Division_list = DivisionModel.objects.all()
+    NGO_list = 	NgoProfileModel.objects.all()
+    context["Division_list"] = Division_list
+    context["NGO_list"] = NGO_list
+    return render(request, 'NGO.html', context ) 	
 
 
 
-def NGODetailView(request, pk):   
+class DivisionWiseNGOlistView(ListView):
+    template_name = 'NGOList.html'
+    context_object_name = 'NGO_list'
+
+    def get_queryset(self):
+        self.division = get_object_or_404(DivisionModel, division = self.kwargs['division'])
+        NGO_list = NgoProfileModel.objects.filter(ngo_division = self.division)
+        return NGO_list
+
+
+
+
+def NGODetailView(request, pk, division):   
+    context = {} 
+    NGO = get_object_or_404(User, pk=pk)
+    #NGO = request.user.ngoprofilemodel
+    context['NGO'] = NGO
+    #context['user'] = user
+    return render(request, 'NGOProfile.html', context)
+
+
+def NGODetailView_2(request, pk):   
     context = {} 
     NGO = get_object_or_404(User, pk=pk)
     #NGO = request.user.ngoprofilemodel

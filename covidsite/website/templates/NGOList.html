@@ -38,32 +38,7 @@
             </div>
         </div>
 
-      <div class="col-12 text-center  mb-5">
-	       <!---- <div class="btn-group btn-group-toggle " data-toggle="buttons">-->
-				<label class="btn active ">
-					<a href="#" class="btn btn-main-2 btn-round-full mt-3">All Cities</a>
-					<!--<input type="radio" name="shuffle-filter" value="all" checked="checked" />All Cities-->
-					<div class="row shuffle-wrapper portfolio-gallery">
-						<div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat1&quot;,&quot;cat2&quot;]">
-							<!--<button class="w3-bar-item w3-button" onclick="openCity('London')">London</button>-->
-					  </div>
-					 </div>	
-					 
-				  </label>
-
-				  {% for Division in Division_list %}
-	          <label class="btn "> 
-				<!--<li><a class="dropdown-item" href="{{ Division.division }}">{{ Division.division }}</a></li>	-->	
-	            <a href="{{ Division.division }}" class="btn btn-main-2 btn-round-full mt-3">{{ Division.division }}</a>
-				
-			 </label>
-			  {% endfor %}
-		
-	          
-	        <!--</div>-->
-      </div>
-
-	  <div class="row shuffle-wrapper portfolio-gallery">
+        <div class="row shuffle-wrapper portfolio-gallery">
 		<div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat1&quot;,&quot;cat2&quot;]">
 		{% if NGO_list  %}
 		{% for NGO in NGO_list %}
@@ -74,7 +49,7 @@
 			   </div>
 			</div>
 			<div class="content mt-3">
-				<h4 class="mb-0"><a href="{% url 'NGODetailView_2'  NGO.user.pk  %}">{{ NGO.user.name }}</a></h4>
+				<h4 class="mb-0"><a href="{{ NGO.user.pk }}">{{ NGO.user.name }}</a></h4>
 				<p>{{ NGO.ngo_division }}</p>
 			</div> 
 		  </div>
