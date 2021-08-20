@@ -42,6 +42,14 @@ class DeleteUser(forms.ModelForm):
        model = User
        fields = ['email', 'name']
 
+    def __init__(self, *args, **kwargs):
+        super(DeleteUser, self).__init__(*args, **kwargs)
+
+        self.fields['email'].widget.attrs['class'] = 'form-control'
+        self.fields['name'].widget.attrs['class'] = 'form-control'
+        
+
+
 
 
 
@@ -50,4 +58,13 @@ class EditProfile(forms.ModelForm):
         model = NgoProfileModel
         fields = '__all__'
         exclude = ['user']
+
+        
+    def __init__(self, *args, **kwargs):
+        super(EditProfile, self).__init__(*args, **kwargs)
+
+        self.fields['bio'].widget.attrs['class'] = 'form-control'
+        self.fields['address'].widget.attrs['class'] = 'form-control'
+        self.fields['phone'].widget.attrs['class'] = 'form-control'
+        self.fields['hospital'].widget.attrs['class'] = 'form-control'
 
