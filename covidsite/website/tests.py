@@ -89,12 +89,19 @@ class NGO_test_case(TestCase):
         self.assertEqual(self.user_b.ngo_division, test_division)
         print("(8)NGO Division test method : Assert Equal NGO Division just made by the test code... \n\n")
 
-    #def test_ngo_profile_form(self):
-       # print("In the form")
-       # form = EditProfile(self.user_b.bio, self.user_b.address,self.user_b.phone,self.user_b.ngo_division)
-       # self.assertEqual(form.is_valid(), True)
-       # print("in the form")
-       # print("(10)NGO edit profile  Form test method : Assert Equal NGO Profile form... \n\n")
+    def test_ngo_profile_form(self):
+        
+        form_data = {
+            'bio' : 'this is a dummy bio',
+            'address' :'Banani',
+            'phone' : '1234567',
+            'hostpital' : 'Medinova'
+            #'ngo_division' : 'Dhaka'
+        }
+        form = EditProfile(data=form_data)
+        self.assertEqual(form.is_valid(), True)
+        
+        print("(12)NGO edit profile  Form test method : Assert Equal NGO Profile form is valid or not... \n\n")
  
 
 
