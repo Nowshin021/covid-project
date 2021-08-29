@@ -14,7 +14,10 @@ urlpatterns = [
     path('Signup', views.SignupView, name = "SignupView"),
     path('Login', views.LoginView, name = "LoginView"),
     path('Log-Out', views.LogoutView, name = "LogoutView"),
+
     path('Contact', views.ContactView, name = "ContactView"),
+    path('About', views.AboutView, name="AboutView"),
+    
     path('EditProfile', views.EditProfileView, name = "EditProfileView"),
     path('DeleteProfile', views.DeleteProfileView, name = "DeleteProfileView"),
     
