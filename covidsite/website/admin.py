@@ -22,3 +22,4 @@ class AccountAdmin(UserAdmin):
 admin.site.register(User, AccountAdmin)
 admin.site.register(NgoProfileModel)
 admin.site.register(DivisionModel)
+admin.site.register(RequestModel)

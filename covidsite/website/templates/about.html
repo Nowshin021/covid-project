@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+
+
+	
+
+
+<section class="page-title bg-1">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <span class="text-white">About Us</span>
+          <h1 class="text-capitalize mb-5 text-lg">About Us</h1>
+
+          <!-- <ul class="list-inline breadcumb-nav">
+            <li class="list-inline-item"><a href="index.html" class="text-white">Home</a></li>
+            <li class="list-inline-item"><span class="text-white">/</span></li>
+            <li class="list-inline-item"><a href="#" class="text-white-50">About Us</a></li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section about-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<h2 class="title-color">Bringing Service Closer to you</h2>
+			</div>
+			<div class="col-lg-8">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, quod laborum alias. Vitae dolorum, officia sit! Saepe ullam facere at, consequatur incidunt, quae esse, quis ut reprehenderit dignissimos, libero delectus.</p>
+				<img src="#" alt="" class="img-fluid">
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="section awards">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-4">
+				<h2 class="title-color">Our Development achievements </h2>
+				<div class="divider mt-4 mb-5 mb-lg-0"></div>
+			</div>
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="award-img">
+							<img src="{% static 'website/images/about/3.png' %}" alt="" class="img-fluid">
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="award-img">
+							<img src="{% static 'website/images/about/4.png' %}" alt="" class="img-fluid">
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="award-img">
+							<img src="{% static 'website/images/about/1.png ' %}" alt="" class="img-fluid">
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section team">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-6">
+				<div class="section-title text-center">
+					<h2 class="mb-4">Meet The Developers</h2>
+					<div class="divider mx-auto my-4"></div>
+					<p>Today’s users expect effortless experiences. Don’t let essential people and processes stay stuck in the past. Speed it up, skip the hassles</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="team-block mb-8 mb-lg-0">
+					<img src="{% static 'website/images/team/nazia.jpg' %}" alt="" class="img-fluid w-100">
+
+					<div class="content">
+						<h4 class="mt-4 mb-0"><a href="#">Nazia Afrin</a></h4>
+						<p>Full Stack Web Developer</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="team-block mb-8 mb-lg-0">
+					<img src="{% static 'website/images/team/tasnia.jpg' %}" alt="" class="img-fluid w-100">
+
+					<div class="content">
+						<h4 class="mt-4 mb-0"><a href="#">Tasnia Afrin</a></h4>
+						<p>Full Stack Web Developer</p>
+					</div>
+				</div>
+			</div>
+
+			
+		</div>
+	</div>
+</section>
+
+
+<!-- footer Start -->
+{%  endblock %}

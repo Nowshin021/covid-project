@@ -80,3 +80,9 @@ class NgoProfileModel(models.Model):
     ngo_division = models.ForeignKey(DivisionModel, on_delete=models.CASCADE, null='True', blank='True')
 
 
+class RequestModel(models.Model):
+    NGO = models.ForeignKey(User, on_delete=models.CASCADE,  null='True', blank='True')
+    name = models.CharField(max_length=225, null=True, blank=True)
+    email = models.EmailField(max_length=255, unique=True)
+    phone = models.CharField(max_length=225,null=True, blank=True)
+    address= models.TextField(max_length=255, null=True, blank=True)

@@ -143,6 +143,8 @@ def LoginView(request):
 def ContactView(request):
     return render(request, 'contact.html', {})
 
+def AboutView(request):
+    return render(request, 'about.html', {})
 
 
 def LogoutView(request):
