@@ -79,7 +79,7 @@
 			      <li class="nav-item dropdown">
 					  <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request.user.name }}<i class="icofont-thin-down"></i></a>
 					  <ul class="dropdown-menu" aria-labelledby="dropdown02">
-						
+						<li><a class="dropdown-item" href="{% url 'RequestList'   %}">See Request List</a></li>
 						<li><a class="dropdown-item" href="{% url 'EditProfileView'   %}">Edit Profile</a></li>
                         <li><a class="dropdown-item" href="{% url 'DeleteProfileView'   %}">Delete Profile</a></li>						
 						<li><a class="dropdown-item" href="{% url 'LogoutView'   %}">Log out</a></li>
@@ -93,6 +93,7 @@
 						<li><a class="dropdown-item" href="{% url 'SignupView'   %}">NGO Sign Up</a></li>
                         <li><a class="dropdown-item" href="{% url 'LoginView'   %}">NGO Log in </a></li>						
 						<li><a class="dropdown-item" href="{% url 'LogoutView'   %}">NGO Log out</a></li>
+						
 					</ul>
 			   	  </li>
 				{% endif %}

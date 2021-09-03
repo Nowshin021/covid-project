@@ -81,8 +81,23 @@ def NGOProfileView(request):
 
 
 
-def RequestTestView(request):
-    return render(request, 'request-test.html', {})
+def RequestTestView(request, pk):
+    NGO = get_object_or_404(User, pk=pk)
+    if request.method == 'POST':
+        form = RequestForm(request.POST)
+        if form.is_valid():
+            req = RequestModel()
+            req.NGO = NGO
+            req.name = form.cleaned_data['name']
+            req.email = form.cleaned_data['email']
+            req.phone = form.cleaned_data['phone']
+            req.address = form.cleaned_data['address']
+            req.save()
+            return redirect('HomeView')
+    form = RequestForm()
+    context = {}
+    context['form'] = form
+    return render(request, 'request-test.html', context)
 
 
 
@@ -90,8 +105,7 @@ def SignupView(request):
     if request.method =='POST':
         print("Post called")
         form = NgoSignupForm(request.POST)
-        if form.is_valid():
-            
+        if form.is_valid():            
             form.save()
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
@@ -179,3 +193,30 @@ def DeleteProfileView(request):
     args = {}
     args['form'] = form
     return render(request, 'delete_profile.html', args) 
+
+def RequestListView(request):
+    context = {}
+    requests = RequestModel.objects.filter(NGO = request.user)
+    context['requests'] = requests
+    return render(request, 'RequestList.html', context)
+
+
+def RequestDeleteView(request, pk):
+    req = RequestModel.objects.filter(pk=pk).first()
+    if request.method == 'POST':
+        form = RequestForm(request.POST, instance = req)
+        if form.is_valid():
+            form.instance.delete()
+            return redirect('HomeView')
+    form = RequestForm(instance=req)
+    args = {}
+    args['form'] = form
+    return render(request, 'delete_request.html', args)
+
+
+    
+    
+
+
+
+

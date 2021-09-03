@@ -10,10 +10,13 @@ urlpatterns = [
     path('NGO/<division>/<int:pk>', views.NGODetailView, name = "NGODetailView"),
     path('NGO/<int:pk>', views.NGODetailView_2, name = "NGODetailView_2"),
     path('NGO-profile', views.NGOProfileView, name = "NGOProfileView"),
-    path('Request-Test', views.RequestTestView, name = "RequestTestView"),
+    path('DivisionWiseNGOlistView/NGODetailView/RequestTestView/<int:pk>', views.RequestTestView, name = "RequestTestView"),
     path('Signup', views.SignupView, name = "SignupView"),
     path('Login', views.LoginView, name = "LoginView"),
     path('Log-Out', views.LogoutView, name = "LogoutView"),
+    path('RequestList', views.RequestListView, name = "RequestList"),
+    path('<int:pk>', views.RequestDeleteView, name = "DeleteRequest"),
+
 
     path('Contact', views.ContactView, name = "ContactView"),
     path('About', views.AboutView, name="AboutView"),
