@@ -68,3 +68,8 @@ class EditProfile(forms.ModelForm):
         self.fields['phone'].widget.attrs['class'] = 'form-control'
         self.fields['hospital'].widget.attrs['class'] = 'form-control'
 
+
+class RequestForm(forms.ModelForm):
+    class Meta:
+        model = RequestModel
+        fields = ['name','email','phone','address']

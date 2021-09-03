@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<section class="page-title bg-1">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">
+          <span class="text-white">Request List</span>
+          <h1 class="text-capitalize mb-5 text-lg">Find the requests came for you NGO</h1>
+
+           <ul class="list-inline breadcumb-nav">
+            <li class="list-inline-item"><a href="{% url 'HomeView'   %}" class="text-white">Home</a></li>
+            <li class="list-inline-item"><span class="text-white">/</span></li>
+            <li class="list-inline-item"><a href="#" class="text-white-50">All Requests</a></li>
+          </ul> 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- portfolio -->
+<section class="section doctors">
+  <div class="container">
+  	  <div class="row justify-content-center">
+             <div class="col-lg-6 text-center">
+                <div class="section-title">
+                   
+                    <div class="divider mx-auto my-4"></div>
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="row shuffle-wrapper portfolio-gallery">
+		<div class="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat1&quot;,&quot;cat2&quot;]">
+		{% if requests  %}
+		{% for request in requests %}
+		<div class="position-relative doctor-inner-box">
+			<div class="doctor-profile">
+			  <!---- <div class="doctor-img">
+					   <img src="{% static 'website/images/team/5.jpg' %}" alt="doctor-image" class="img-fluid w-100">
+			   </div>-->
+			</div>
+			<div class="content mt-3">
+				<!--<h4 class="mb-0"><a href="{{ NGO.user.pk }}">{{ NGO.user.name }}</a></h4>-->
+				<p>Name : {{ request.name }}</p>
+                <p>Email : {{ request.email }}</p>
+                <p>Phone : {{ request.phone  }}</p>
+                <p>Address : {{ request.address }}</p>
+                <a href="{% url 'DeleteRequest' request.pk  %}" class="btn btn-main-2 btn-round-full mt-3">Delete Request</a>
+			</div> 
+		  </div>
+		  {% endfor %}
+
+		  {% else %}
+					<h3 style="color: #62B2FF">There are no enlisted requests for now.</h3>
+		  {% endif %}
+	  </div>
+</div>	
+
+
+
+      
+
+  </div>
+</section> 
+
+
+<!-- /portfolio -->
+
+{% endblock %}

@@ -59,7 +59,7 @@
 					<p>Hospital - {{ NGO.ngoprofilemodel.hospital }}</p>
 					<p>Email Address - {{ NGO.email }}</p>
 
-					<a href="{% url 'RequestTestView'  %}" class="btn btn-main-2 btn-round-full mt-3">Make an Request</a>
+					<a href="{% url 'RequestTestView' NGO.pk  %}" class="btn btn-main-2 btn-round-full mt-3">Make an Request</a>
 				</div>
 			</div>
 		</div>
