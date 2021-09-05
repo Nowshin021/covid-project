@@ -104,6 +104,9 @@
                 </form>
             </div>
         </div>
+        {% for message in messages %}
+        <p id="messages"><strong>{{message}}</strong></p>
+        {% endfor %}
     </div>
 </section>
 
