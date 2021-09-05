@@ -73,3 +73,11 @@ class RequestForm(forms.ModelForm):
     class Meta:
         model = RequestModel
         fields = ['name','email','phone','address']
+
+    def __init__(self, *args, **kwargs):
+        super(RequestForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs['class'] = 'form-control'
+        self.fields['email'].widget.attrs['class'] = 'form-control'
+        self.fields['phone'].widget.attrs['class'] = 'form-control'
+        self.fields['address'].widget.attrs['class'] = 'form-control'

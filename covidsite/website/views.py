@@ -8,7 +8,8 @@ from .forms import *
 from website.models import *
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
-
+from django.core.mail import send_mail
+from django.contrib import messages
 # Create your views here.
 
 def HomeView(request):
@@ -94,6 +95,7 @@ def RequestTestView(request, pk):
             req.address = form.cleaned_data['address']
             req.save()
             return redirect('HomeView')
+           
     form = RequestForm()
     context = {}
     context['form'] = form
@@ -128,7 +130,7 @@ def SignupView(request):
 
 
 def LoginView(request):
-    message = None
+    
     if request.POST:
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -154,8 +156,8 @@ def LoginView(request):
     return render(request, 'Login.html', context)
 
 
-def ContactView(request):
-    return render(request, 'contact.html', {})
+#def ContactView(request):
+    #return render(request, 'contact.html', {})
 
 def AboutView(request):
     return render(request, 'about.html', {})
@@ -219,4 +221,25 @@ def RequestDeleteView(request, pk):
 
 
 
+def ContactView(request):
+    if request.method == 'POST':
+        fname = request.POST['First_name']
+        lname = request.POST['last_name']
+        subject = request.POST['subject']
+        email_add = request.POST['email']
+        
+        message = request.POST['message']
+
+        send_mail(
+            "Subject: " + subject ,
+            message + " \nfrom :" + email_add,
+            email_add,
+            ['covidrapidtest777@gmail.com', ],
+            # the mail address that the email will be sent to
+        )
+        messages.success(request, "Feedback sent successfully.")
+
+        return render(request, 'contact.html', {})
+
+    return render(request, 'contact.html', {})
 
